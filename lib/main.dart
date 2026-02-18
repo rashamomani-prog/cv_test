@@ -14,11 +14,20 @@ void main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     ).timeout(const Duration(seconds: 10));
-    if (FirebaseAuth.instance.currentUser == null) {
-      await FirebaseAuth.instance.signInAnonymously();
-    }
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        FirebaseAuth.instance.signInAnonymously().then((value) {
+          print(" تم تسجيل دخول مجهول جديد: ${value.user?.uid}");
+        }).catchError((e) {
+          print(" خطأ أثناء تسجيل الدخول: $e");
+        });
+      } else {
+        print(" المستخدم متصل بالفعل: ${user.uid}");
+      }
+    });
+
   } catch (e) {
-    print("Firebase Error: $e");
+    print("❌ Firebase Initialization Error: $e");
   }
 
   runApp(
@@ -43,7 +52,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kNavy,
         scaffoldBackgroundColor: kBeige,
       ),
-      home: PersonalInfoScreen(),
+      home:  PersonalInfoScreen(),
     );
   }
 }

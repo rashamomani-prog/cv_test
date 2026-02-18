@@ -5,7 +5,29 @@ class UserModel {
   String? phone;
   String? location;
   String? photoUrl;
-  UserModel({this.id, this.fullName, this.email, this.phone, this.location, this.photoUrl});
+  String? experience;
+  String? skills;
+  String? education;
+  String? profileImagePath;
+  String? summary;
+  String? languages;
+  String? jobTitle;
+  UserModel({
+    this.id,
+    this.fullName,
+    this.email,
+    this.phone,
+    this.location,
+    this.photoUrl,
+    this.experience,
+    this.skills,
+    this.education,
+    this.profileImagePath,
+    this.summary,
+    this.languages,
+    this.jobTitle
+  });
+
   factory UserModel.fromMap(Map<String, dynamic> data, String documentId) {
     return UserModel(
       id: documentId,
@@ -14,8 +36,12 @@ class UserModel {
       phone: data['phone'],
       location: data['location'],
       photoUrl: data['photoUrl'],
+      experience: data['experience'],
+      skills: data['skills'],
+      education: data['education'],
     );
   }
+
   Map<String, dynamic> toMap() {
     return {
       'fullName': fullName,
@@ -23,6 +49,9 @@ class UserModel {
       'phone': phone,
       'location': location,
       'photoUrl': photoUrl,
+      'experience': experience,
+      'skills': skills,
+      'education': education,
     };
   }
 }

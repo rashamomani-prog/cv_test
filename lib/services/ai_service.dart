@@ -1,7 +1,7 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class AiService {
-  static const String _apiKey = 'AIzaSyDT34xuAXOyWT898-nV3ZSu1OcAXzG11yE';
+  static const String _apiKey = 'AIzaSyDXtFsOcPQLuQ1ofVONz0PA7j7N3HtVeeI';
 
   static Future<String> getSuggestions(String jobTitle, String type) async {
     try {
